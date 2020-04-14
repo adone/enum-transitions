@@ -2,6 +2,7 @@ module Enum
   module Transitions
     module DSL
       extend ActiveSupport::Concern
+      extend ActiveSupport::Autoload
 
       autoload :Proxy
       autoload :Callbacks

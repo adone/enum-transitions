@@ -1,7 +1,10 @@
 require 'enum/transitions/version'
+require 'active_support'
 
 module Enum
   module Transitions
+    extend ActiveSupport::Autoload
+
     autoload :DSL
     autoload :Machine
     autoload :UpdateHandler

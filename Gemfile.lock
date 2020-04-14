@@ -3,6 +3,7 @@ PATH
   specs:
     enum-transitions (1.0.0)
       activerecord (~> 5.0)
+      activesupport (~> 5.0)
 
 GEM
   remote: https://rubygems.org/
