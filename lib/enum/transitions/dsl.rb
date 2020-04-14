@@ -9,7 +9,7 @@ module Enum
 
       class_methods do
         def transitions(enum:, &block)
-          states = public_send(enum.pluralize).keys
+          states = public_send(enum.to_s.pluralize).keys
           config = Configuration.new(enum.to_s, states)
           proxy  = Proxy.embed(states).new(config)
 
