@@ -23,7 +23,12 @@ module Enum
           transitions.each_pair do |sources, targets|
             Array(sources).product(Array(targets)) do |source, target|
               transition = transition_event(source, target)
+
               @config.transitions[source][target] = transition
+              @config.callbacks[transition] ||= []
+              @config.callbacks[leaving_event(source)] ||= []
+              @config.callbacks[entering_event(target)] ||= []
+
               Docile.dsl_eval(Callbacks.new(@config, transition), &block)
             end
           end
