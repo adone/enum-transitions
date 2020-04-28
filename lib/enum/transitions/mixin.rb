@@ -11,8 +11,10 @@ module Enum
         included do
           define_callbacks(*config.callbacks.keys)
 
-          config.callbacks.each_pair do |event, (kind, block)|
-            set_callback(event, kind, &block)
+          config.callbacks.each_pair do |event, callbacks|
+            callbacks.each do |kind, block|
+              set_callback(event, kind, &block)
+            end
           end
 
           around_update UpdateHandler.new(config), if: :"#{config.enum}_changed?"
