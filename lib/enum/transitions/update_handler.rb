@@ -14,9 +14,9 @@ module Enum
 
         raise Errors::TransitionNotAllowed if transition.nil?
 
-        run_callbacks transition do
-          run_callbacks leaving_event(source) do
-            run_callbacks entering_event(target) do
+        model.run_callbacks transition do
+          model.run_callbacks leaving_event(source) do
+            model.run_callbacks entering_event(target) do
               yield
             end
           end
