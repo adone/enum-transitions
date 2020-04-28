@@ -2,6 +2,8 @@ module Enum
   module Transitions
     module DSL
       class Proxy
+        include Naming
+
         # @param states [Array<String>]
         def self.embed(states)
           Class.new(self) do
@@ -20,7 +22,7 @@ module Enum
         def allow(transitions, &block)
           transitions.each_pair do |sources, targets|
             Array(sources).product(Array(targets)) do |source, target|
-              transition = :"#{@config.enum}_from_#{source}_to_#{target}"
+              transition = transition_event(source, target)
               @config.transitions[source][target] = transition
               Docile.dsl_eval(Callbacks.new(@config, transition), &block)
             end
@@ -29,25 +31,25 @@ module Enum
 
         def before_leaving(*states, &block)
           states.each do |state|
-            @config.callbacks[:"#{@config.enum}_leaving_#{state}"] << [:before, block]
+            @config.callbacks[leaving_event(state)] << [:before, block]
           end
         end
 
         def after_leaving(*states, &block)
           states.each do |state|
-            @config.callbacks[:"#{@config.enum}_leaving_#{state}"] << [:after, block]
+            @config.callbacks[leaving_event(state)] << [:after, block]
           end
         end
 
         def before_entering(*states, &block)
           states.each do |state|
-            @config.callbacks[:"#{@config.enum}_entering_#{state}"] << [:before, block]
+            @config.callbacks[entering_event(state)] << [:before, block]
           end
         end
 
         def after_entering(*states, &block)
           states.each do |state|
-            @config.callbacks[:"#{@config.enum}_entering_#{state}"] << [:after, block]
+            @config.callbacks[entering_event(state)] << [:after, block]
           end
         end
       end

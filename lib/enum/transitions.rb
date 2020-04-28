@@ -6,6 +6,7 @@ module Enum
     extend ActiveSupport::Autoload
 
     autoload :DSL
+    autoload :Naming
     autoload :Machine
     autoload :UpdateHandler
     autoload :Configuration

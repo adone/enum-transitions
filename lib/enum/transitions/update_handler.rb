@@ -1,6 +1,8 @@
 module Enum
   module Transitions
     class UpdateHandler
+      include Naming
+
       # @param config [Enum::Transisions::Configuration]
       def initialize(config)
         @config = config
@@ -13,8 +15,8 @@ module Enum
         raise Errors::TransitionNotAllowed if transition.nil?
 
         run_callbacks transition do
-          run_callbacks :"leave_#{source}_#{@config.enum}" do
-            run_callbacks :"enter_#{target}_#{@config.enum}" do
+          run_callbacks leaving_event(source) do
+            run_callbacks entering_event(target) do
               yield
             end
           end
