@@ -17,7 +17,7 @@ module Enum
             Docile.dsl_eval(proxy, &block)
           end
 
-          prepend Mixin.new(config)
+          include Mixin.new(config)
         end
       end
     end
