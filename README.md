@@ -19,7 +19,7 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
-class Model
+class Model < ApplicationRecord
   include Enum::Transitions::DSL
 
   enum state: [:pending, :active, :finihed, :failed]
