@@ -29,7 +29,7 @@ module Enum
               @config.callbacks[leaving_event(source)] ||= []
               @config.callbacks[entering_event(target)] ||= []
 
-              Docile.dsl_eval(Callbacks.new(@config, transition), &block)
+              Docile.dsl_eval(Callbacks.new(@config, transition), &block) if block_given?
             end
           end
         end
