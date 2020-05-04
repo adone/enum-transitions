@@ -5,7 +5,7 @@
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'enum-transitions', '~> 1.0.0
+gem 'enum-transitions', '~> 1.0.1
 ```
 
 And then execute:
