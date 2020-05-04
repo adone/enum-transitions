@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    enum-transitions (1.0.0)
+    enum-transitions (1.0.1)
       activerecord (~> 5.0)
       activesupport (~> 5.0)
 
